@@ -89,7 +89,7 @@ An enterprise-grade platform that leverages specialized AI agents to autonomousl
 
 ### Default Login
 - **Username**: `admin`
-- **Password**: `secure-admin-2024`
+- **Password**: `admin123` (for local development) or `secure-admin-2024` (for production)
 
 ## 📖 Usage
 

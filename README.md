@@ -198,11 +198,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For support and questions:
 - Create an issue in this repository
-- Contact: support@same.new
 
 ## 🙏 Acknowledgments
 
-- Built with [Same](https://same.new) - Cloud-based development environment
 - Powered by Next.js and React
 - UI components from shadcn/ui
 - Real-time capabilities with WebSocket

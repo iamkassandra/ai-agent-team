@@ -643,5 +643,50 @@ export class AuthManager {
   }
 }
 
-// Singleton instance
-export const authManager = new AuthManager();
+// Singleton instance with lazy initialization
+let authManagerInstance: AuthManager | null = null;
+
+export const authManager = {
+  get instance(): AuthManager {
+    if (!authManagerInstance) {
+      authManagerInstance = new AuthManager();
+    }
+    return authManagerInstance;
+  },
+  login: async (...args: Parameters<AuthManager['login']>) => {
+    return authManager.instance.login(...args);
+  },
+  logout: async (...args: Parameters<AuthManager['logout']>) => {
+    return authManager.instance.logout(...args);
+  },
+  refreshToken: async (...args: Parameters<AuthManager['refreshToken']>) => {
+    return authManager.instance.refreshToken(...args);
+  },
+  validateToken: async (...args: Parameters<AuthManager['validateToken']>) => {
+    return authManager.instance.validateToken(...args);
+  },
+  createUser: async (...args: Parameters<AuthManager['createUser']>) => {
+    return authManager.instance.createUser(...args);
+  },
+  changePassword: async (...args: Parameters<AuthManager['changePassword']>) => {
+    return authManager.instance.changePassword(...args);
+  },
+  getUserSessions: (...args: Parameters<AuthManager['getUserSessions']>) => {
+    return authManager.instance.getUserSessions(...args);
+  },
+  terminateAllSessions: async (...args: Parameters<AuthManager['terminateAllSessions']>) => {
+    return authManager.instance.terminateAllSessions(...args);
+  },
+  cleanupExpiredSessions: () => {
+    return authManager.instance.cleanupExpiredSessions();
+  },
+  getSecurityStats: () => {
+    return authManager.instance.getSecurityStats();
+  },
+  close: () => {
+    if (authManagerInstance) {
+      authManagerInstance.close();
+      authManagerInstance = null;
+    }
+  }
+};
